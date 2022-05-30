@@ -1,0 +1,12 @@
+{
+  "name": "Marry3 #1 yootou.eth&eleven3.eth",
+  "description": "yootou.eth and eleven3.eth got married in Web3, base on ERC520 stantard, on 2022-5-20, link: https://marry3.love/i/1",
+  "external_url": "https://marry3.love/i/1",
+  "image": "https://bafybeialnklgnjla6p773rcuvtk25cwrjul25ccl7a2vnd4yqbuqsgse4y.ipfs.infura-ipfs.io/?filename=1.png",
+  "attributes": [
+    { "trait_type": "date", "value": "2022-5-20" },
+    { "trait_type": "sex", "value": "Man" },
+    { "trait_type": "ensA", "value": "yootou.eth" },
+    { "trait_type": "ensB", "value": "eleven3.eth" }
+  ]
+}
