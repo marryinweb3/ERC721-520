@@ -15,7 +15,7 @@
 
 <a href="https://github.com/marryinweb3/ERC721-520"><img src="https://user-images.githubusercontent.com/897401/171176759-123d5777-0f36-4680-a2ef-25f07ff44618.png" height="80" /></a>
 
-#### ERC-520 Token — Reference Implementation
+#### ERC721-520 Token — Reference Implementation
 
 主网合约地址：https://etherscan.io/token/0x70c82f15103f972ab058eca784c45dcdcf53b5c2
 
@@ -35,6 +35,7 @@ ERC721-520 Token 是 NFT-like Soulbound Token Standard（灵魂绑定凭证） �
 - ERC721-520 Token 不可转让，不可售卖，一个人同时只能有一个有效 Token
 - ERC721-520 Token 由二者通过多签协商后，一次性 Mint 出 2 个 Token
 - ERC721-520 Token 可以通过多签协商销毁，销毁后可以与其他地址铸造新的 Token
+- ERC721-520 Token 是 ERC721 兼容的，大部分 NFT 使用场景都无缝支持
 
 ![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
