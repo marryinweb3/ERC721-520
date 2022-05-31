@@ -1,28 +1,42 @@
+![two-logo](https://user-images.githubusercontent.com/897401/171043801-72a3894f-1c23-43b2-a7a2-2e3618e10b1d.png)
+
+ 
+
+<p align="center">
+  <a href="https://Marry3.love"><img src="https://img.shields.io/badge/https%3A%2F%2FMarry3.love-F41870?&labelColor=1D1D1D&logo=googlechrome&style=flat-square" /></a>
+  <a href="https://ERC520.com"><img src="https://img.shields.io/badge/https%3A%2F%2FERC520.com-F41870?&labelColor=1D1D1D&logo=googlechrome&style=flat-square" /></a>
+</p> 
+<p align="center">
+  <a href="https://twitter.com/marryinweb3"><img src="https://img.shields.io/badge/%40marryinweb3-F41870?&labelColor=1D1D1D&logo=twitter&style=flat-square" /></a>
+</p>
+
+![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
+
+
 <a href="https://github.com/marryinweb3/ERC520"><img src="https://www.marry3.love/ERC520-noborder.png" height="80" /></a>
 
-### ERC-520 Token — Reference Implementation
+#### ERC-520 Token — Reference Implementation
 
----
+主网合约地址：https://etherscan.io/token/0x70c82f15103f972ab058eca784c45dcdcf53b5c2
 
-在 2022 年 5 月 20 日这天，此 ERC520 核心合约将部署至 Ethereum 公链，并铸造 Web3 世界第一对 Marry3 Certificate，以此献给我的爱人
+> 在 2022 年 5 月 20 日这天，此 ERC520 核心合约将部署至 Ethereum 公链，并铸造 Web3 世界第一对 Marry3 Certificate，以此献给我的爱人
 
-今天是我们结婚 7 周年，恋爱 8 周年纪念日，也是我们在 Web3 世界结婚的第一天，愿未来所有“地址”和它们背后的你们都能在这里得到来自合约的祝福！
+> 这一天是我们结婚 7 周年，恋爱 8 周年纪念日，也是我们在 Web3 世界结婚的第一天，愿未来所有“地址”和它们背后的你们都能在这里得到来自合约的祝福！
 
--- yootou.eth
+> ERC520 的命名既是源于此处
 
----
+
+![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
 这是一个基于 ERC721 标准的规范，定义了在 web3 世界中一个必要的亲密关系：婚姻。它的有效证件即本合约中的 token，您或者其他产品可通过官方合约、官方网站等查询任意地址的配对状态及过往记录。
 
-Dapp:
-
-<a href="https://marry3.love"><img src="https://www.marry3.love/logo-slogon.png" height="80" /></a>
-
-ERC520 Token 是 NFT-like Soulbound Token Standard（灵魂绑定凭证） 的一种实现
+ERC520 Token 是 NFT-like Soulbound Token Standard（灵魂绑定凭证） 的一种实现 [Vitalik's Blog Post about Soulbound](https://vitalik.ca/general/2022/01/26/soulbound.html)
 
 - ERC520 Token 不可转让，不可售卖，一个人同时只能有一个有效 Token
 - ERC520 Token 由二者通过多签协商后，一次性 Mint 出 2 个 Token
 - ERC520 Token 可以通过多签协商销毁，销毁后可以与其他地址铸造新的 Token
+
+![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
 ### Marry3 Certificate
 
@@ -35,7 +49,12 @@ Marry3(Marry in Web3) Certificate 只是通过 ERC520 协议实现的一个最�
 - 存款合约。通过 ERC20 Token 和 多签合约，实现存款和取款等应用。
 - 共享合约。可由其他第三方写入和使用绑定关系，打通身份生态。
 
-<img src="https://marry3.love/Marry3eco.png"  />
+
+整体架构：
+
+<img src="https://user-images.githubusercontent.com/897401/171099294-40a83981-80e2-4907-9c6b-2209474c1779.png"  />
+
+![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
 ### Standard
 
@@ -60,6 +79,8 @@ new functions:
 - 校验：传入两个地址校验是否在登记状态
 - 查询某个地址的婚姻记录
 
+![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
+
 ### Test Case
 
 - ✓ correctly checks all the supported interfaces
@@ -73,10 +94,14 @@ new functions:
 - ✓ 不能出轨: throws when transfers NFT from owner
 - ✓ 离婚: corre- ctly burns two NFTs for A and B (47ms)
 
+![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
+
 ### Requirements
 
 - NodeJS 12+ is supported
 - Windows, Linux or macOS
+
+![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
 ### Installation
 
@@ -107,6 +132,8 @@ Make sure that everything has been set up correctly:
 ```
 $ npm run test
 ```
+
+![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
 ## Licence
 
