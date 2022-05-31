@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://Marry3.love"><img src="https://img.shields.io/badge/https%3A%2F%2FMarry3.love-F41870?&labelColor=1D1D1D&logo=googlechrome&style=flat-square" /></a>
-  <a href="https://github.com/marryinweb3/ERC721-520"><img src="https://img.shields.io/badge/https%3A%2F%2FERC721-520.com-F41870?&labelColor=1D1D1D&logo=googlechrome&style=flat-square" /></a>
+  <a href="https://github.com/marryinweb3/ERC721-520"><img src="https://img.shields.io/badge/https%3A%2F%2FERC520.com-F41870?&labelColor=1D1D1D&logo=googlechrome&style=flat-square" /></a>
 </p> 
 <p align="center">
   <a href="https://twitter.com/marryinweb3"><img src="https://img.shields.io/badge/%40marryinweb3-F41870?&labelColor=1D1D1D&logo=twitter&style=flat-square" /></a>
