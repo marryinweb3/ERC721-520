@@ -13,16 +13,17 @@
 ![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
 
-
-### ERC-520 Token — Reference Implementation
-
 <a href="https://github.com/marryinweb3/ERC520"><img src="https://www.marry3.love/ERC520-noborder.png" height="80" /></a>
+
+#### ERC-520 Token — Reference Implementation
 
 主网合约地址：https://etherscan.io/token/0x70c82f15103f972ab058eca784c45dcdcf53b5c2
 
 > 在 2022 年 5 月 20 日这天，此 ERC520 核心合约将部署至 Ethereum 公链，并铸造 Web3 世界第一对 Marry3 Certificate，以此献给我的爱人
 
 > 这一天是我们结婚 7 周年，恋爱 8 周年纪念日，也是我们在 Web3 世界结婚的第一天，愿未来所有“地址”和它们背后的你们都能在这里得到来自合约的祝福！
+
+> ERC520 的命名既是源于此处
 
 
 ![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
