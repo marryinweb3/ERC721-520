@@ -1,10 +1,5 @@
 ![two-logo](https://user-images.githubusercontent.com/897401/171043801-72a3894f-1c23-43b2-a7a2-2e3618e10b1d.png)
 
-<p align="center">
-  <a href="./README_EN.md"><img src="https://img.shields.io/badge/English%20Version%20README-333333?&labelColor=000&style=for-the-badge" />
-    </a>
-</p>
-
  
 
 <p align="center">
