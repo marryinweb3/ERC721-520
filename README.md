@@ -18,7 +18,7 @@ Dapp:
 
 <a href="https://marry3.love"><img src="https://www.marry3.love/logo-slogon.png" height="80" /></a>
 
-ERC520 Token 是 NFT-like Soulbound Token Standard（灵魂绑定凭证） 的一种实现
+ERC520 Token 是 NFT-like Soulbound Token Standard（灵魂绑定凭证） 的一种实现 [Vitalik's Blog Post about Soulbound](https://vitalik.ca/general/2022/01/26/soulbound.html)
 
 - ERC520 Token 不可转让，不可售卖，一个人同时只能有一个有效 Token
 - ERC520 Token 由二者通过多签协商后，一次性 Mint 出 2 个 Token
