@@ -1,20 +1,34 @@
-<a href="https://github.com/marryinweb3/ERC520"><img src="https://www.marry3.love/ERC520-noborder.png" height="80" /></a>
+![two-logo](https://user-images.githubusercontent.com/897401/171043801-72a3894f-1c23-43b2-a7a2-2e3618e10b1d.png)
 
-### ERC-520 Token — Reference Implementation
+<p align="center">
+  <a href="./README_EN.md"><img src="https://img.shields.io/badge/English%20Version%20README-333333?&labelColor=000&style=for-the-badge" />
+    </a>
+</p>
+
+ 
+
+<p align="center">
+  <a href="https://Marry3.love"><img src="https://img.shields.io/badge/https%3A%2F%2FMarry3.love-F41870?&labelColor=1D1D1D&logo=googlechrome&style=flat-square" /></a>
+  <a href="https://ERC520.com"><img src="https://img.shields.io/badge/https%3A%2F%2FERC520.com-F41870?&labelColor=1D1D1D&logo=googlechrome&style=flat-square" /></a>
+</p> 
+<p align="center">
+  <a href="https://twitter.com/marryinweb3"><img src="https://img.shields.io/badge/%40marryinweb3-F41870?&labelColor=1D1D1D&logo=twitter&style=flat-square" /></a>
+</p>
 
 ![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
-在 2022 年 5 月 20 日这天，此 ERC520 核心合约将部署至 Ethereum 公链，并铸造 Web3 世界第一对 Marry3 Certificate，以此献给我的爱人
 
-这一天是我们结婚 7 周年，恋爱 8 周年纪念日，也是我们在 Web3 世界结婚的第一天，愿未来所有“地址”和它们背后的你们都能在这里得到来自合约的祝福！
+
+### ERC-520 Token — Reference Implementation
+
+<a href="https://github.com/marryinweb3/ERC520"><img src="https://www.marry3.love/ERC520-noborder.png" height="80" /></a>
 
 主网合约地址：https://etherscan.io/token/0x70c82f15103f972ab058eca784c45dcdcf53b5c2
 
-dapp 项目地址：https://github.com/marryinweb3/Marry3
+> 在 2022 年 5 月 20 日这天，此 ERC520 核心合约将部署至 Ethereum 公链，并铸造 Web3 世界第一对 Marry3 Certificate，以此献给我的爱人
 
-dapp 测试地址：
+> 这一天是我们结婚 7 周年，恋爱 8 周年纪念日，也是我们在 Web3 世界结婚的第一天，愿未来所有“地址”和它们背后的你们都能在这里得到来自合约的祝福！
 
-<a href="https://marry3.love"><img src="https://www.marry3.love/logo-slogon.png" height="80" /></a>
 
 ![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
