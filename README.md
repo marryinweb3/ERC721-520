@@ -1,4 +1,4 @@
-![two-logo](https://user-images.githubusercontent.com/897401/171177043-083c392f-f7a1-4155-9a34-4a866604ca69.png)
+![two-logo](https://user-images.githubusercontent.com/897401/172005550-bead2997-6d74-4f5a-a75b-f2c91368dafc.png)
 
 <p align="center">
   <a href="https://Marry3.love"><img src="https://img.shields.io/badge/https%3A%2F%2FMarry3.love-F41870?&labelColor=1D1D1D&logo=googlechrome&style=flat-square" /></a>
@@ -10,37 +10,28 @@
 
 ![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
-<a href="https://github.com/marryinweb3/ERC721-520"><img src="https://user-images.githubusercontent.com/897401/171176759-123d5777-0f36-4680-a2ef-25f07ff44618.png" height="80" /></a>
+<a href="https://github.com/marryinweb3/ERC721-520"><img src="https://user-images.githubusercontent.com/897401/172005583-4469d4c0-946f-4977-abd6-386aea22f5ef.png" height="80" /></a>
 
-#### ERC721-520 Token — Reference Implementation
+#### ERC721-520 Token — A SBTs Implementation
 
 Mainnet Contract (Marry3 Certificate)：https://etherscan.io/token/0x70c82f15103f972ab058eca784c45dcdcf53b5c2
 
-> 在 2022 年 5 月 20 日这天，此 ERC721-520 核心合约将部署至 Ethereum 公链，并铸造 Web3 世界第一对 Marry3 Certificate，以此献给我的爱人
+> On May 20, 2022, this ERC721-520 core contract will be deployed to the Ethereum chain, and the world's first pair of Marry3 Certificates will be minted for my lover
 
-> 这一天是我们结婚 7 周年，恋爱 8 周年纪念日，也是我们在 Web3 世界结婚的第一天，愿未来所有“地址”和它们背后的你们都能在这里得到来自合约的祝福！
+> This day is our 7th wedding anniversary, the 8th anniversary of our relationship, and the first day of our marriage in the Web3 world. Wish all future "addresses" receive blessings from contracts here!
 
-> ERC721-520 的命名既是源于此处
+> The naming of ERC721-520 is derived from this, it's a ERC721 extension and SBTs special implement.
 
 ![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
 This is a specification based on the ERC721 standard that defines a necessary intimacy in the web3 world: marriage. Its valid certificate is the token in this contract. You or other products can query the pairing status and past records of any address through the official contract, official website, etc.
 
-ERC721-520 Token is an implementation of NFT-like Soulbound Token Standard [Vitalik's Blog Post about Soulbound](https://vitalik.ca/general/2022/01/26/soulbound.html)
+ERC721-520 Token is an implementation of NFT-like Soulbound Token [Vitalik's Blog Post about Soulbound](https://vitalik.ca/general/2022/01/26/soulbound.html)
 
 - implement from erc721, most NFT usage scenarios are seamlessly compatible
 - non-transferable and non-sellable, one person can only have one valid Token at the same time.
 - mint paired soulbound token through multi-signature flow, Mint will issue 2 Soulbound Tokens at one time.
 - can be destroyed through multi-signature flow, and new Soulbound Token can be minted with other addresses after burn.
-
-这是一个基于 ERC721 标准的规范，定义了在 web3 世界中一个必要的亲密关系：婚姻。它的有效证件即本合约中的 token，您或者其他产品可通过官方合约、官方网站等查询任意地址的配对状态及过往记录。
-
-ERC721-520 Token 是 NFT-like Soulbound Token Standard（灵魂绑定凭证） 的一种实现 [Vitalik's Blog Post about Soulbound](https://vitalik.ca/general/2022/01/26/soulbound.html)
-
-- ERC721-520 Token 不可转让，不可售卖，一个人同时只能有一个有效 Token
-- ERC721-520 Token 由二者通过多签协商后，一次性 Mint 出 2 个 Token
-- ERC721-520 Token 可以通过多签协商销毁，销毁后可以与其他地址铸造新的 Token
-- ERC721-520 Token 是 ERC721 兼容的，大部分 NFT 使用场景都无缝支持
 
 ![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
@@ -64,8 +55,6 @@ Overall structure:
 ![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
 ### Standard
-
-ERC721-520 完全基于 ERC721 扩展，并添加以下新的 feature：
 
 this token is base on ERC721 standard, and add some new feature：
 
