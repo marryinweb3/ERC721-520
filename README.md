@@ -59,7 +59,6 @@ Overall structure:
 
 <img src="https://user-images.githubusercontent.com/897401/171990720-5d81e809-9d13-4d66-85b6-e847e9a66c9a.png"  />
 
-<img width="947" alt="image" src="">
 
 
 ![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
