@@ -17,7 +17,7 @@ contract Marry3Token is ERC520Token, Ownable, DateUtil {
     constructor() {
         nftName = "Marry3";
         nftSymbol = "Marry3 Certificate";
-        baseURI = "https://ipfs.infura.io/ipfs/QmWyBBYVrgJhsCEQx68eM9qGjBvfYAxgnVRs9j3KPEEqjn";
+        baseURI = "";
     }
 
     function mint(
