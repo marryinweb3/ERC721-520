@@ -14,7 +14,7 @@
 
 #### ERC721-520 Token — Reference Implementation
 
-主网合约地址：https://etherscan.io/token/0x70c82f15103f972ab058eca784c45dcdcf53b5c2
+Mainnet Contract (Marry3 Certificate)：https://etherscan.io/token/0x70c82f15103f972ab058eca784c45dcdcf53b5c2
 
 > 在 2022 年 5 月 20 日这天，此 ERC721-520 核心合约将部署至 Ethereum 公链，并铸造 Web3 世界第一对 Marry3 Certificate，以此献给我的爱人
 
@@ -23,15 +23,6 @@
 > ERC721-520 的命名既是源于此处
 
 ![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
-
-这是一个基于 ERC721 标准的规范，定义了在 web3 世界中一个必要的亲密关系：婚姻。它的有效证件即本合约中的 token，您或者其他产品可通过官方合约、官方网站等查询任意地址的配对状态及过往记录。
-
-ERC721-520 Token 是 NFT-like Soulbound Token Standard（灵魂绑定凭证） 的一种实现 [Vitalik's Blog Post about Soulbound](https://vitalik.ca/general/2022/01/26/soulbound.html)
-
-- ERC721-520 Token 不可转让，不可售卖，一个人同时只能有一个有效 Token
-- ERC721-520 Token 由二者通过多签协商后，一次性 Mint 出 2 个 Token
-- ERC721-520 Token 可以通过多签协商销毁，销毁后可以与其他地址铸造新的 Token
-- ERC721-520 Token 是 ERC721 兼容的，大部分 NFT 使用场景都无缝支持
 
 This is a specification based on the ERC721 standard that defines a necessary intimacy in the web3 world: marriage. Its valid certificate is the token in this contract. You or other products can query the pairing status and past records of any address through the official contract, official website, etc.
 
@@ -42,20 +33,29 @@ ERC721-520 Token is an implementation of NFT-like Soulbound Token Standard [Vita
 - mint paired soulbound token through multi-signature flow, Mint will issue 2 Soulbound Tokens at one time.
 - can be destroyed through multi-signature flow, and new Soulbound Token can be minted with other addresses after burn.
 
+这是一个基于 ERC721 标准的规范，定义了在 web3 世界中一个必要的亲密关系：婚姻。它的有效证件即本合约中的 token，您或者其他产品可通过官方合约、官方网站等查询任意地址的配对状态及过往记录。
+
+ERC721-520 Token 是 NFT-like Soulbound Token Standard（灵魂绑定凭证） 的一种实现 [Vitalik's Blog Post about Soulbound](https://vitalik.ca/general/2022/01/26/soulbound.html)
+
+- ERC721-520 Token 不可转让，不可售卖，一个人同时只能有一个有效 Token
+- ERC721-520 Token 由二者通过多签协商后，一次性 Mint 出 2 个 Token
+- ERC721-520 Token 可以通过多签协商销毁，销毁后可以与其他地址铸造新的 Token
+- ERC721-520 Token 是 ERC721 兼容的，大部分 NFT 使用场景都无缝支持
+
 ![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
 ### Marry3 Certificate
 
-Marry3(Marry in Web3) Certificate 只是通过 ERC721-520 协议实现的一个最基本的、核心的合约。
+Marry3 (Marry in Web3) Certificate is just a basic and core contract implemented through the ERC721-520 protocol.
 
-围绕它，Marry3 DAPP 将实现一系列应用合约，包括并不限于：
+Around it, Marry3 DAPP will implement a series of application contracts, including but not limited to:
 
-- 登记合约。校验用户身份并实现多签的共同登记，登记记录，付费，返利等能力。
-- 多签合约。通过 ERC721-520 Token 的绑定关系，改造多签协议，实现多签钱包的兼容。
-- 存款合约。通过 ERC20 Token 和 多签合约，实现存款和取款等应用。
-- 共享合约。可由其他第三方写入和使用绑定关系，打通身份生态。
+- Register the contract. Verify user identity and realize multi-signature common registration, registration record, payment, rebate and other capabilities.
+- Multi-signature contracts. Through the binding relationship of ERC721-520 Token, the multi-signature agreement is transformed to realize the compatibility of multi-signature wallets.
+- Deposit contracts. Through ERC20 Token and multi-signature contracts, applications such as deposit and withdrawal can be realized.
+- Shared contracts. The binding relationship can be written and used by other third parties to open up the identity ecology.
 
-整体架构：
+Overall structure:
 
 <img src="https://user-images.githubusercontent.com/897401/171099294-40a83981-80e2-4907-9c6b-2209474c1779.png"  />
 
@@ -69,20 +69,20 @@ this token is base on ERC721 standard, and add some new feature：
 
 new features:
 
-- 俩人：必须两个地址一起才可以 mint 出来 token
-- 俩证：一次会 mint 两个 token 出来：两证
-- 不可重婚：一个地址只能同时与一个地址 mint，mint 之后不能再 mint ，需要调用 divorce （离婚），销毁二者 mint 出来的两个 token
-- 不能出轨：ERC721-520 token 不可 transfer，只能由 minter 持有
-- 离婚：ERC721-520 token 可以协商销毁，流程与 mint 类似，销毁后可以重新与其他地址铸造新的 token
-- 不限制性别：任何性别的人都可以结婚
+- Two addresses: The two addresses must be together to mint the token
+- Two certificates: two tokens will be mint at a time: two certificates
+- No bigamy: An address can only be mint with one address at the same time. After mint, it cannot be mint again. You need to call divorce (divorce) to destroy the two tokens mint from the two.
+- No derailment: ERC721-520 tokens cannot be transferred and can only be held by the minter
+- Divorce: ERC721-520 tokens can be negotiated and destroyed. The process is similar to mint. After destruction, new tokens can be minted with other addresses.
+- No gender restrictions: anyone of any gender can get married
 
 new functions:
 
-- mint: 通过两个地址同时 mint 两个 token，分别分配给两个地址
-- 通过任何一个 token 都可以查询到两个 token 的具体信息
-- 用户的结婚和离婚记录均记录在合约中，可查询
-- 校验：传入两个地址校验是否在登记状态
-- 查询某个地址的婚姻记录
+- mint: Mint two tokens at the same time through two addresses and assign them to two addresses respectively
+- Through any token, you can query the specific information of the two tokens
+- The user's marriage and divorce records are recorded in the contract, which can be queried
+- Check: Pass in two addresses to check whether they are in the registered state
+- Look up the marriage records of an address
 
 ![line](https://user-images.githubusercontent.com/897401/171048003-7b7adb40-9f72-4bfc-84de-e948892bf7f9.png)
 
