@@ -24,3 +24,5 @@ coverage.json
 coverage
 .env
 typechain-types
+src/deploys/burn.js
+src/deploys/test.js

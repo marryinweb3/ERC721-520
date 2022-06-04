@@ -24,13 +24,6 @@ const main = async () => {
 
   // await (await marry3token.transferOwnership(marry3.address)).wait();
 
-  // console.log("transferOwnership");
-  // // await (
-  // //   await marry3token.setBaseURI(
-  // //     "https://bafybeialnklgnjla6p773rcuvtk25cwrjul25ccl7a2vnd4yqbuqsgse4y.ipfs.infura-ipfs.io/?filename="
-  // //   )
-  // // ).wait();
-
   // await (
   //   await marry3.mint(
   //     "0xF95555A29E58188147D3A3AcD6e2Ffeb04EA7dd5",

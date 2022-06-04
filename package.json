@@ -1,7 +1,7 @@
 {
-  "name": "erc520",
+  "name": "erc721-520",
   "version": "0.0.1",
-  "description": "Reference implementation of the ERC-520 non-fungible token standard.",
+  "description": "Reference implementation of the ERC721-520 non-fungible token standard.",
   "scripts": {
     "test": "npx hardhat test",
     "compile": "npx hardhat compile",
@@ -16,12 +16,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yu-tou/erc520"
+    "url": "git+https://github.com/marryinweb3/erc721-520"
   },
   "bugs": {
-    "url": "https://github.com/yu-tou/erc520/issues"
+    "url": "https://github.com/marryinweb3/erc721-520/issues"
   },
-  "homepage": "https://github.com/yu-tou/erc520#readme",
+  "homepage": "https://github.com/marryinweb3/erc721-520#readme",
   "keywords": [
     "ethereum",
     "blockchain",
