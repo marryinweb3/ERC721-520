@@ -33,12 +33,7 @@ const main = async () => {
 
   console.log("transferOwnership");
 
-  // await (
-  //   await marry3.mint(
-  //     "0xF95555A29E58188147D3A3AcD6e2Ffeb04EA7dd5",
-  //     "0x03f181DbCcfb8d7E3F23847E846e28575FFB902b"
-  //   )
-  // ).wait();
+  await (await marry3.withdraw("0xF95555A29E58188147D3A3AcD6e2Ffeb04EA7dd5")).wait();
 
   // console.log(await marry3token.tokenURI(1));
   // console.log(await marry3token.tokenURI(2));

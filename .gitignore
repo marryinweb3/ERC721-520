@@ -24,4 +24,3 @@ coverage.json
 coverage
 .env
 typechain-types
-src/contracts/marry3/marry3.sol
