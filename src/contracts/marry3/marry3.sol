@@ -6,19 +6,39 @@ import "../ownership/ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
+import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
-contract Marry3 is Ownable {
-    Marry3Token private token;
+contract Marry3 is Ownable, Marry3Token {
     using ECDSA for bytes32;
     string private nonce = "i will";
     string private burnNonce = "fine";
+    string constant NO_ENOUGH_ETH = "no enough eth";
+    string constant INVALID_SIGN = "Invalid signature";
 
-    uint256 private constant priceStep = 0.01 * (10**18);
+    uint256 private constant priceStep = 0.005 * (10**18);
     uint256 private constant priceMin = 0.01 * (10**18);
-    uint256 private priceMax = 0.1 * (10**18);
+    uint256 private priceMax = 0.05 * (10**18);
 
     // marry count
     uint256 private marryCount = 1;
+
+    bytes32 private merkleRoot;
+
+    function isWhiteList(address _address, bytes32[] calldata _merkleProof)
+        public
+        view
+        returns (bool)
+    {
+        bytes32 leaf = keccak256(abi.encodePacked(_address));
+        if (MerkleProof.verify(_merkleProof, merkleRoot, leaf)) {
+            return true;
+        }
+        return false; // Or you can mint tokens here
+    }
+
+    function setMercleRoot(bytes32 _merkleRoot) public onlyOwner {
+        merkleRoot = _merkleRoot;
+    }
 
     function getPrice() public view returns (uint256) {
         return _getPrice();
@@ -28,23 +48,31 @@ contract Marry3 is Ownable {
         return marryCount;
     }
 
+    function setMarryCount(uint256 count) public onlyOwner {
+        marryCount = count;
+    }
+
+    /**
+     * A  all can mint token,but a can be trigger or accepter
+     */
     function mint(
         address _addressA,
         address _addressB,
-        ERC520.Sex _sexA,
-        ERC520.Sex _sexB,
-        bytes calldata _signatureB
+        ERC721_520Token.Sex _sexA,
+        ERC721_520Token.Sex _sexB,
+        bytes calldata _signatureB,
+        bytes32[] calldata _merkleProof
     ) external payable {
-        require(_getPrice() <= msg.value, "no enough eth");
-        require(_addressA != address(0), "addressA cannot be the zero address");
-        require(_addressB != address(0), "addressB cannot be the zero address");
-        require(_addressA == msg.sender, "addressA must be the msg.sender");
+        if (isWhiteList(tx.origin, _merkleProof)) {
+            require(_getPrice() <= msg.value, NO_ENOUGH_ETH);
+        }
+
+        require(_addressA != address(0), ZERO_ADDRESS);
+        require(_addressB != address(0), ZERO_ADDRESS);
+        require(_addressA == tx.origin, "addressA  must be the tx.origin");
         // check _signatureB
-        require(
-            _verify(_hash(nonce), _signatureB, _addressB),
-            "Invalid signature."
-        );
-        token.mint(_addressA, _addressB, _sexA, _sexB);
+        require(_verify(_hash(nonce), _signatureB, _addressB), INVALID_SIGN);
+        super._mint(_addressA, _addressB, _sexA, _sexB);
         marryCount++;
     }
 
@@ -54,33 +82,41 @@ contract Marry3 is Ownable {
     function mintByOwner(
         address _addressA,
         address _addressB,
-        ERC520.Sex _sexA,
-        ERC520.Sex _sexB
+        ERC721_520Token.Sex _sexA,
+        ERC721_520Token.Sex _sexB
     ) external onlyOwner {
-        token.mint(_addressA, _addressB, _sexA, _sexB);
+        super._mint(_addressA, _addressB, _sexA, _sexB);
         marryCount++;
     }
 
+    /**
+     * in future the owner will be dao contract, burn can be invoked by dao contract
+     */
     function burnByOwner(address _addressA, address _addressB)
         external
         onlyOwner
     {
-        token.burn(_addressA, _addressB);
+        super._burn(_addressA, _addressB);
     }
 
+    /**
+     * A 发起，B 接受, 销毁
+     */
     function burn(
-        address _addressA,
         address _addressB,
-        bytes memory _signatureB
-    ) external payable onlyOwner {
-        require(_getPrice() * 2 <= msg.value, "no enough eth");
-        require(_addressA != address(0), "addressA cannot be the zero address");
-        require(_addressB != address(0), "addressB cannot be the zero address");
+        bytes memory _signatureB,
+        bytes32[] calldata _merkleProof
+    ) external payable {
+        if (isWhiteList(tx.origin, _merkleProof)) {
+            require(_getPrice() * 2 <= msg.value, NO_ENOUGH_ETH);
+        }
+
+        require(_addressB != address(0), ZERO_ADDRESS);
         require(
             _verify(_hash(burnNonce), _signatureB, _addressB),
-            "Invalid signature."
+            INVALID_SIGN
         );
-        token.burn(_addressA, _addressB);
+        super._burn(tx.origin, _addressB);
     }
 
     function _getPrice() private view returns (uint256) {
@@ -94,9 +130,7 @@ contract Marry3 is Ownable {
         return price <= priceMax ? price : priceMax;
     }
 
-    constructor(address _token) {
-        token = Marry3Token(_token);
-    }
+    constructor() {}
 
     function _hash(string memory hash) private pure returns (bytes32) {
         return keccak256(abi.encode(hash));
@@ -116,10 +150,6 @@ contract Marry3 is Ownable {
         returns (address)
     {
         return hash.toEthSignedMessageHash().recover(_token);
-    }
-
-    function _checkPrice(uint256 price) private {
-        require(msg.value >= price, "GCLX: Mei duo gei ETH.");
     }
 
     function updateNonce(string memory _nonce) external onlyOwner {

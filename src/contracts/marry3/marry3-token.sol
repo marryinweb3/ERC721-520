@@ -1,15 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../tokens/erc520-token.sol";
-import "../tokens/erc721-token-receiver.sol";
-import "../tokens/nf-token-enumerable.sol";
+import "../tokens/erc721_520-token.sol";
 import "../ownership/ownable.sol";
-import "../utils/date.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract Marry3Token is ERC520Token, Ownable, DateUtil {
+contract Marry3Token is ERC721_520Token, Ownable {
     string baseURI = "";
 
     // Resolver public defaultResolver;
@@ -36,7 +33,7 @@ contract Marry3Token is ERC520Token, Ownable, DateUtil {
     function tokenURI(uint256 tokenId)
         public
         view
-        override(ERC520Token)
+        override(ERC721_520Token)
         returns (string memory)
     {
         string memory tokenIdString = _uint256tostring(tokenId);

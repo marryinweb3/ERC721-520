@@ -7,25 +7,18 @@ import "./erc721.sol";
  * @dev ERC-520 non-fungible token standard.
  * See https://github.com/marryinweb3/erc520
  */
-interface ERC520 is ERC721 {
+interface ERC721_520 is ERC721 {
     enum Sex {
         Man,
         Woman,
         X
     }
-    enum HistoryType {
-        Marry,
-        Divorce
-    }
+
     struct AddressInfo {
         address partner;
         Sex sex;
         uint256 time;
         uint256 tokenId;
-    }
-
-    struct AddressInput {
-        Sex sex;
     }
 
     /**

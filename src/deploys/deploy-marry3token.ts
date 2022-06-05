@@ -1,5 +1,5 @@
-const { ethers, network, run } = require("hardhat");
-const { utils } = require("ethers");
+import { network, run, ethers } from "hardhat";
+import { utils } from "ethers";
 
 const main = async () => {
   // Compile contracts

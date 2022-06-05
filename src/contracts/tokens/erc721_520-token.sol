@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../tokens/erc520.sol";
+import "../tokens/erc721_520.sol";
 import "../tokens/nf-token-enumerable.sol";
 
-contract ERC520Token is NFTokenEnumerable, ERC520 {
+contract ERC721_520Token is NFToken, ERC721_520 {
     string constant HAS_PAIR = "address already has a partner";
     string constant NO_VALID_PAIR = "not valid pair";
 
@@ -13,6 +13,7 @@ contract ERC520Token is NFTokenEnumerable, ERC520 {
     constructor() {}
 
     event Minted(address minter, uint256 tokenIdA, uint256 tokenIdB);
+    event Burned(address minter);
     /**
      * @dev A descriptive name for a collection of NFTs.
      */
@@ -24,11 +25,20 @@ contract ERC520Token is NFTokenEnumerable, ERC520 {
     string internal nftSymbol;
 
     /**
+     * only increase no decrease
+     */
+    uint256 internal _totalSupply = 0;
+
+    /**
      * @dev Returns a descriptive name for a collection of NFTokens.
      * @return _name Representing name.
      */
     function name() external view returns (string memory _name) {
         _name = nftName;
+    }
+
+    function totalSupply() external view returns (uint256) {
+        return _totalSupply;
     }
 
     /**
@@ -39,7 +49,9 @@ contract ERC520Token is NFTokenEnumerable, ERC520 {
         _symbol = nftSymbol;
     }
 
-    // 只有授权的合约可以调用，所以此合约无法由用户直接 mint
+    /**
+     * Only authorized contracts can be called, so this contract cannot be mint directly by users, but authorized contracts can be called by users
+     */
     function _mint(
         address _addressA,
         address _addressB,
@@ -53,10 +65,11 @@ contract ERC520Token is NFTokenEnumerable, ERC520 {
         require(addressInfoB.partner == address(0), HAS_PAIR);
 
         //@todo mint token
-        uint256 _tokenIdA = tokens.length + 1;
+        uint256 _tokenIdA = _totalSupply + 1;
         super._mint(_addressA, _tokenIdA);
-        uint256 _tokenIdB = tokens.length + 1;
+        uint256 _tokenIdB = _totalSupply + 2;
         super._mint(_addressB, _tokenIdB);
+        _totalSupply = _totalSupply + 2;
 
         addressInfoA.tokenId = _tokenIdA;
         addressInfoB.tokenId = _tokenIdB;
@@ -77,9 +90,6 @@ contract ERC520Token is NFTokenEnumerable, ERC520 {
     }
 
     function _burn(address _addressA, address _addressB) internal virtual {
-        require(_addressA != address(0), ZERO_ADDRESS);
-        require(_addressB != address(0), ZERO_ADDRESS);
-
         AddressInfo memory addressInfoA = addressPools[_addressA];
         require(addressInfoA.partner == _addressB, NO_VALID_PAIR);
         AddressInfo memory addressInfoB = addressPools[_addressB];
@@ -88,11 +98,10 @@ contract ERC520Token is NFTokenEnumerable, ERC520 {
         super._burn(addressInfoA.tokenId);
         super._burn(addressInfoB.tokenId);
 
-        addressInfoA.partner = address(0);
-        addressInfoB.partner = address(0);
+        delete addressPools[_addressA];
+        delete addressPools[_addressB];
 
-        addressPools[_addressA] = addressInfoA;
-        addressPools[_addressB] = addressInfoB;
+        emit Burned(msg.sender);
     }
 
     /**
@@ -135,8 +144,6 @@ contract ERC520Token is NFTokenEnumerable, ERC520 {
         external
         view
         virtual
-        override
-        validNFToken(_tokenId)
         returns (string memory)
     {
         return "";
