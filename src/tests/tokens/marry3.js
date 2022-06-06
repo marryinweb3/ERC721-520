@@ -1,4 +1,16 @@
 const { expect } = require("chai");
+const { MerkleTree } = require("merkletreejs");
+const keccak256 = require("keccak256");
+
+const whitelistAddress = [
+  "0xF95555A29E58188147D3A3AcD6e2Ffeb04EA7dd5",
+  "0xfe1fa387C545Ac7bfA46F6d720baA16902037F10",
+  "0x4374311B5d68E9eC496B70a55b8dD9469c804D1C",
+  "0xF4634A201A7E923Ee7c009B47389C9a0533EF537"
+];
+
+const nonce = "i will";
+const burnnonce = "fine";
 
 describe("marry3", function() {
   let nfToken, owner, bob, jane, sara;
@@ -9,18 +21,78 @@ describe("marry3", function() {
   beforeEach(async () => {
     const nftContract = await ethers.getContractFactory("Marry3");
     nfToken = await nftContract.deploy();
-    [owner, bob, jane, sara] = await ethers.getSigners();
+    [owner, p1, p2, p3, p4, p5, p6] = await ethers.getSigners();
+
+    whitelistAddress.push(p1.address);
+    whitelistAddress.push(p2.address);
+    whitelistAddress.push(p3.address);
     await nfToken.deployed();
   });
 
   it("correctly mints two NFT for A and B", async function() {
+    await nfToken.connect(owner).setMarryCount(100);
+
+    const leafNodes = whitelistAddress.map(addr => keccak256(addr));
+    const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
+    await (await nfToken.connect(owner).setMercleRoot(merkleTree.getHexRoot())).wait();
+
+    const proof = merkleTree.getHexProof(keccak256(p1.address));
+    const hash = ethers.utils.keccak256(ethers.utils.defaultAbiCoder.encode(["string"], [nonce]));
+
+    const message = ethers.utils.arrayify(hash);
+    const signature = await p2.signMessage(message);
     expect(
-      await nfToken.connect(owner).mint(bob.address, jane.address, 0, 1, { value: 0.01 })
+      await nfToken
+        .connect(p1)
+        ["mint(address,address,uint8,uint8,bytes,bytes32[])"](
+          p1.address,
+          p2.address,
+          0,
+          1,
+          signature,
+          proof
+        )
     ).to.emit(nfToken, "Transfer");
 
-    await nfToken.connect(owner).setMarryCount(100);
-    expect(await nfToken.balanceOf(bob.address)).to.equal(1);
-    expect(await nfToken.balanceOf(jane.address)).to.equal(1);
+    expect(await nfToken.balanceOf(p1.address)).to.equal(1);
+    expect(await nfToken.balanceOf(p2.address)).to.equal(1);
+    const proof5 = merkleTree.getHexProof(keccak256(p5.address));
+    const signature5 = await p6.signMessage(message);
+    expect(
+      await nfToken
+        .connect(p5)
+        ["mint(address,address,uint8,uint8,bytes,bytes32[])"](
+          p5.address,
+          p6.address,
+          0,
+          1,
+          signature5,
+          proof5,
+          {
+            value: ethers.utils.parseEther("0.1")
+          }
+        )
+    ).to.emit(nfToken, "Transfer");
+
+    expect(await nfToken.balanceOf(p5.address)).to.equal(1);
+    expect(await nfToken.balanceOf(p6.address)).to.equal(1);
+
+    const hashburn = ethers.utils.keccak256(
+      ethers.utils.defaultAbiCoder.encode(["string"], [burnnonce])
+    );
+
+    const messageburn = ethers.utils.arrayify(hashburn);
+    const signatureburn6 = await p6.signMessage(messageburn);
+
+    expect(
+      await nfToken
+        .connect(p5)
+        ["burn(address,bytes,bytes32[])"](p6.address, signatureburn6, proof5, {
+          value: ethers.utils.parseEther("0.1")
+        })
+    ).to.emit(nfToken, "Burned");
+    expect(await nfToken.balanceOf(p5.address)).to.equal(0);
+    expect(await nfToken.balanceOf(p6.address)).to.equal(0);
   });
 
   // it("throws when trying to get count of NFTs owned by 0x0 address", async function() {

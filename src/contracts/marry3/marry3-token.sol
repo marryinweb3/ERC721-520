@@ -14,21 +14,21 @@ contract Marry3Token is ERC721_520Token, Ownable {
     constructor() {
         nftName = "Marry3";
         nftSymbol = "Marry3 Certificate";
-        baseURI = "";
+        baseURI = "https://marry3.love/api/meta";
     }
 
-    function mint(
-        address _addressA,
-        address _addressB,
-        Sex _sexA,
-        Sex _sexB
-    ) public onlyOwner {
-        super._mint(_addressA, _addressB, _sexA, _sexB);
-    }
+    // function mint(
+    //     address _addressA,
+    //     address _addressB,
+    //     Sex _sexA,
+    //     Sex _sexB
+    // ) public onlyOwner {
+    //     super._mint(_addressA, _addressB, _sexA, _sexB);
+    // }
 
-    function burn(address _addressA, address _addressB) public onlyOwner {
-        super._burn(_addressA, _addressB);
-    }
+    // function burn(address _addressA, address _addressB) public onlyOwner {
+    //     super._burn(_addressA, _addressB);
+    // }
 
     function tokenURI(uint256 tokenId)
         public

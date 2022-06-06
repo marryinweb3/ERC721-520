@@ -20,12 +20,12 @@ contract Marry3 is Ownable, Marry3Token {
     uint256 private priceMax = 0.05 * (10**18);
 
     // marry count
-    uint256 private marryCount = 1;
+    uint256 private marryCount = 0;
 
     bytes32 private merkleRoot;
 
     function isWhiteList(address _address, bytes32[] calldata _merkleProof)
-        public
+        private
         view
         returns (bool)
     {
@@ -36,19 +36,31 @@ contract Marry3 is Ownable, Marry3Token {
         return false; // Or you can mint tokens here
     }
 
-    function setMercleRoot(bytes32 _merkleRoot) public onlyOwner {
+    function setMercleRoot(bytes32 _merkleRoot) external onlyOwner {
         merkleRoot = _merkleRoot;
     }
 
-    function getPrice() public view returns (uint256) {
+    function getPrice() external view returns (uint256) {
         return _getPrice();
     }
 
-    function getMarryCount() public view returns (uint256) {
+    function getPriceByProof(bytes32[] calldata _merkleProof)
+        external
+        view
+        returns (uint256)
+    {
+        if (isWhiteList(tx.origin, _merkleProof)) {
+            return 0;
+        } else {
+            return _getPrice();
+        }
+    }
+
+    function getMarryCount() external view returns (uint256) {
         return marryCount;
     }
 
-    function setMarryCount(uint256 count) public onlyOwner {
+    function setMarryCount(uint256 count) external onlyOwner {
         marryCount = count;
     }
 
@@ -63,7 +75,7 @@ contract Marry3 is Ownable, Marry3Token {
         bytes calldata _signatureB,
         bytes32[] calldata _merkleProof
     ) external payable {
-        if (isWhiteList(tx.origin, _merkleProof)) {
+        if (!isWhiteList(tx.origin, _merkleProof)) {
             require(_getPrice() <= msg.value, NO_ENOUGH_ETH);
         }
 
@@ -107,7 +119,7 @@ contract Marry3 is Ownable, Marry3Token {
         bytes memory _signatureB,
         bytes32[] calldata _merkleProof
     ) external payable {
-        if (isWhiteList(tx.origin, _merkleProof)) {
+        if (!isWhiteList(tx.origin, _merkleProof)) {
             require(_getPrice() * 2 <= msg.value, NO_ENOUGH_ETH);
         }
 
@@ -120,8 +132,8 @@ contract Marry3 is Ownable, Marry3Token {
     }
 
     function _getPrice() private view returns (uint256) {
-        uint8 n = 0;
-        uint8 c = 100;
+        uint256 n = 0;
+        uint256 c = 100;
         while (marryCount >= c && n <= 9) {
             n++;
             c = c + (n + 1) * 100;

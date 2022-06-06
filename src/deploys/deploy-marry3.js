@@ -9,25 +9,15 @@ const main = async () => {
   const currentNetwork = network.name;
 
   if (currentNetwork == "mainnet") return;
-  const Marry3Token = await ethers.getContractFactory("Marry3Token");
-  const marry3token = await Marry3Token.deploy();
-
-  await marry3token.deployed();
-
-  console.log(`Deployed Marry3Token at ${marry3token.address}`);
 
   const Marry3 = await ethers.getContractFactory("Marry3");
-  const marry3 = await Marry3.deploy(marry3token.address);
+  const marry3 = await Marry3.deploy();
 
   await marry3.deployed();
 
   console.log(`Deployed Marry3 at ${marry3.address}`);
 
-  await (await marry3token.setBaseURI("https://marry3.love/api/meta")).wait();
-
-  await (await marry3token.transferOwnership(marry3.address)).wait();
-
-  console.log("transferOwnership");
+  await (await marry3.setBaseURI("https://marry3.love/api/meta")).wait();
 
   // await (
   //   await marry3.mint(

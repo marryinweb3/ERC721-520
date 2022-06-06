@@ -64,6 +64,8 @@
     "@typechain/ethers-v5": "^10.0.0",
     "@typechain/hardhat": "^6.0.0",
     "hardhat-gas-reporter": "^1.0.8",
+    "keccak256": "^1.0.6",
+    "merkletreejs": "^0.2.31",
     "typechain": "^8.0.0"
   }
 }
