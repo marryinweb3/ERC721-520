@@ -124,6 +124,7 @@ describe("erc520-token", function() {
     const result2 = await trans2.wait();
     const tokenIDC = result2.events[2].args[1];
     const tokenIDD = result2.events[2].args[2];
+
     expect(await nfToken.balanceOf(sara.address)).to.equal(1);
     expect(await nfToken.balanceOf(owner.address)).to.equal(1);
     expect(await nfToken.totalSupply()).to.equal(4);
@@ -131,6 +132,8 @@ describe("erc520-token", function() {
     expect(await nfToken.balanceOf(bob.address)).to.equal(1);
     expect(await nfToken.balanceOf(jane.address)).to.equal(1);
     await nfToken.connect(owner).burnByOwner(bob.address, jane.address);
+    expect(await nfToken.totalSupply()).to.equal(2);
+    expect(await nfToken.getMarryCount()).to.equal(2);
     expect(await nfToken.balanceOf(bob.address)).to.equal(0);
     expect(await nfToken.balanceOf(jane.address)).to.equal(0);
     await expect(nfToken.ownerOf(tokenIDA)).to.be.revertedWith("003002");
@@ -146,7 +149,8 @@ describe("erc520-token", function() {
     expect(await nfToken.balanceOf(jane.address)).to.equal(1);
     expect((await nfToken.getPairInfo(bob.address))[0].partner).to.equal(jane.address);
     expect((await nfToken.getPairInfo(jane.address))[0].partner).to.equal(bob.address);
-    expect(await nfToken.totalSupply()).to.equal(6);
+    expect(await nfToken.totalSupply()).to.equal(4);
+    expect(await nfToken.getMarryCount()).to.equal(3);
   });
 
   it("throws when trying to burn non existent NFT", async function() {

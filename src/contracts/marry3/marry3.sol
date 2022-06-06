@@ -19,9 +19,6 @@ contract Marry3 is Ownable, Marry3Token {
     uint256 private constant priceMin = 0.01 * (10**18);
     uint256 private priceMax = 0.05 * (10**18);
 
-    // marry count
-    uint256 private marryCount = 0;
-
     bytes32 private merkleRoot;
 
     function isWhiteList(address _address, bytes32[] calldata _merkleProof)
@@ -57,11 +54,7 @@ contract Marry3 is Ownable, Marry3Token {
     }
 
     function getMarryCount() external view returns (uint256) {
-        return marryCount;
-    }
-
-    function setMarryCount(uint256 count) external onlyOwner {
-        marryCount = count;
+        return _totalIndex / 2;
     }
 
     /**
@@ -85,7 +78,6 @@ contract Marry3 is Ownable, Marry3Token {
         // check _signatureB
         require(_verify(_hash(nonce), _signatureB, _addressB), INVALID_SIGN);
         super._mint(_addressA, _addressB, _sexA, _sexB);
-        marryCount++;
     }
 
     /**
@@ -98,7 +90,6 @@ contract Marry3 is Ownable, Marry3Token {
         ERC721_520Token.Sex _sexB
     ) external onlyOwner {
         super._mint(_addressA, _addressB, _sexA, _sexB);
-        marryCount++;
     }
 
     /**
@@ -134,7 +125,8 @@ contract Marry3 is Ownable, Marry3Token {
     function _getPrice() private view returns (uint256) {
         uint256 n = 0;
         uint256 c = 100;
-        while (marryCount >= c && n <= 9) {
+        uint256 count = _totalIndex / 2;
+        while (count >= c && n <= 9) {
             n++;
             c = c + (n + 1) * 100;
         }

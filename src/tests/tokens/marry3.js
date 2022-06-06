@@ -30,7 +30,7 @@ describe("marry3", function() {
   });
 
   it("correctly mints two NFT for A and B", async function() {
-    await nfToken.connect(owner).setMarryCount(100);
+    // await nfToken.connect(owner).setMarryCount(100);
 
     const leafNodes = whitelistAddress.map(addr => keccak256(addr));
     const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });

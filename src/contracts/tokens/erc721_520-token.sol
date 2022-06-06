@@ -28,6 +28,7 @@ contract ERC721_520Token is NFToken, ERC721_520 {
      * only increase no decrease
      */
     uint256 internal _totalSupply = 0;
+    uint256 internal _totalIndex = 0;
 
     /**
      * @dev Returns a descriptive name for a collection of NFTokens.
@@ -65,11 +66,12 @@ contract ERC721_520Token is NFToken, ERC721_520 {
         require(addressInfoB.partner == address(0), HAS_PAIR);
 
         //@todo mint token
-        uint256 _tokenIdA = _totalSupply + 1;
+        uint256 _tokenIdA = _totalIndex + 1;
         super._mint(_addressA, _tokenIdA);
-        uint256 _tokenIdB = _totalSupply + 2;
+        uint256 _tokenIdB = _totalIndex + 2;
         super._mint(_addressB, _tokenIdB);
         _totalSupply = _totalSupply + 2;
+        _totalIndex = _totalIndex + 2;
 
         addressInfoA.tokenId = _tokenIdA;
         addressInfoB.tokenId = _tokenIdB;
@@ -100,6 +102,8 @@ contract ERC721_520Token is NFToken, ERC721_520 {
 
         delete addressPools[_addressA];
         delete addressPools[_addressB];
+
+        _totalSupply = _totalSupply - 2;
 
         emit Burned(msg.sender);
     }
