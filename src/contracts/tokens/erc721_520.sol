@@ -9,9 +9,10 @@ import "./erc721.sol";
  */
 interface ERC721_520 is ERC721 {
     enum Sex {
-        Man,
-        Woman,
-        X
+        Male,
+        Female,
+        X,
+        Reserve
     }
 
     struct AddressInfo {

@@ -10,7 +10,7 @@
     "solhint": "solhint src/**/*.sol",
     "deploy:rinkeby": "npx hardhat run --network rinkeby src/deploys/deploy-marry3token.js",
     "deploy:marry3:rinkeby": "npx hardhat run --network rinkeby src/deploys/deploy-marry3.js",
-    "deploy:mainnet": "npx hardhat run --network mainnet src/deploys/deploy-marry3token.js",
+    "deploy:mainnet": "npx hardhat run --network mainnet src/deploys/deploy-marry3.js",
     "burn:rinkeby": "npx hardhat run --network rinkeby src/deploys/burn.js"
   },
   "license": "MIT",
@@ -66,6 +66,7 @@
     "hardhat-gas-reporter": "^1.0.8",
     "keccak256": "^1.0.6",
     "merkletreejs": "^0.2.31",
-    "typechain": "^8.0.0"
+    "typechain": "^8.0.0",
+    "typescript": "^4.7.3"
   }
 }

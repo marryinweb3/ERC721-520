@@ -8,7 +8,7 @@ const main = async () => {
   const [deployer] = await ethers.getSigners();
   const currentNetwork = network.name;
 
-  if (currentNetwork == "mainnet") return;
+  // if (currentNetwork == "mainnet") return;
 
   const Marry3 = await ethers.getContractFactory("Marry3");
   const marry3 = await Marry3.deploy();
@@ -17,7 +17,7 @@ const main = async () => {
 
   console.log(`Deployed Marry3 at ${marry3.address}`);
 
-  await (await marry3.setBaseURI("https://marry3.love/api/meta")).wait();
+  // await (await marry3.setBaseURI("https://marry3.love/api/meta")).wait();
 
   // await (
   //   await marry3.mint(

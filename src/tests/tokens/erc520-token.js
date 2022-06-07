@@ -41,7 +41,7 @@ describe("erc520-token", function() {
   it("throws when trying to mint nft second time for B", async function() {
     await nfToken.connect(owner).mintByOwner(bob.address, jane.address, 0, 1);
     await expect(
-      nfToken.connect(owner).mintByOwner(sara.address, jane.address, 0, 1)
+      nfToken.connect(owner).mintByOwner(sara.address, jane.address, 0, 3)
     ).to.be.revertedWith("address already has a partner");
   });
 
@@ -66,6 +66,11 @@ describe("erc520-token", function() {
     const result = await trans.wait();
 
     expect(await nfToken.check(bob.address, jane.address)).to.equal(true);
+
+    await nfToken.connect(owner).burnByOwner(bob.address, jane.address);
+    await trans.wait();
+
+    await expect(nfToken.check(bob.address, jane.address)).to.be.revertedWith("not valid pair");
   });
 
   it("check pair", async function() {
